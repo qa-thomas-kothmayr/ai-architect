@@ -37,6 +37,7 @@ Leitet aus den **Selections** eine **einheitlich dokumentierte Struktur** ab: Sy
    - `system.mmd`: einfache Knoten/Beziehungen zwischen Containern/Externals
    - `components-<container>.mmd`: optionale Skizzen pro Container
    - `sequence-<name>.mmd`: Sequenzdiagramm(e)
+   - **WICHTIG**: Verwende nach der Erstellung aller `.mmd`-Dateien den `mermaid-expert` Subagent, um die Mermaid-Syntax zu validieren und zu korrigieren
 4) **Diff zeigen → Schreiben**
    - Änderungen erst nach Bestätigung schreiben.
 
@@ -115,7 +116,7 @@ sequenceDiagram
 ## Validierung
 - **Konsistenz:** Struktur passt zu Selections/Context; keine widersprüchlichen Verantwortlichkeiten.
 - **Vollständigkeit:** Mindestens System-/Container-Übersicht + 1 Sequenz.
-- **Lesbarkeit:** Mermaid-Syntax valid; bei Fehlern `diagram-fix` Subagent verwenden.
+- **Lesbarkeit:** Mermaid-Syntax valid; bei Fehlern `mermaid-expert` Subagent verwenden.
 
 ## Exit-Kriterien
 - `design/structure.md` existiert und beschreibt System/Container, Komponenten, Schnittstellen, mind. eine Sequenz.

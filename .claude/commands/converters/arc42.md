@@ -5,7 +5,9 @@ allowed-tools: Read, Edit, Write
 ---
 
 ## Zweck
-Aus den **Design-Dokumenten** (`design/*.md`) und **Context-Informationen** (`context/*.md`) wird eine vollständige arc42-Architekturdokumentation generiert. Das Command analysiert vorhandene Strukturen und erstellt alle 12 arc42-Kapitel mit Mermaid-Diagrammen.
+Aus den **Design-Dokumenten** (`design/*.md`) und **Context-Informationen** (`context/*.md`) wird eine vollständige, **ausführliche** arc42-Architekturdokumentation generiert. Das Command analysiert vorhandene Strukturen und erstellt alle 12 arc42-Kapitel mit umfangreichen Textbeschreibungen und ergänzenden Mermaid-Diagrammen.
+
+**Fokus auf Content-Tiefe**: Jedes arc42-Kapitel soll substanziellen Textinhalt haben - detaillierte Architekturanalyse mit Business-Kontext, technischen Details, Begründungen und praktischen Beispielen.
 
 ## Eingaben
 - **Basis-Referenz:** `design/*.md`
@@ -46,21 +48,37 @@ Aus den **Design-Dokumenten** (`design/*.md`) und **Context-Informationen** (`co
    - **Kapitel 9**: Architekturentscheidungen aus vorhandenen ADRs
    - **Kapitel 10-12**: Qualität, Risiken, Glossar
 
-5) **Diagramm-Generierung**: Erstelle Mermaid-Diagramme für relevante Kapitel:
-   - Verwende camelCase-Namenskonventionen  
+   **Ausführlichkeitsgrad**: Jedes Kapitel soll umfassendes Textmaterial enthalten:
+   - **Detaillierte Beschreibungen**: Jeden Architekturaspekt ausführlich erklären
+   - **Begründungen**: Warum-Fragen beantworten, nicht nur Was-Fragen
+   - **Praxisbeispiele**: Konkrete Szenarien und Anwendungsfälle
+   - **Trade-off-Analysen**: Architekturentscheidungen mit Alternativen begründen
+   - **Implementierungsdetails**: Technische Umsetzung und Konfiguration
+
+5) **Content-First Approach**: Erstelle zuerst umfangreichen Textinhalt, dann Diagramme:
+   - **Umfassende Textbeschreibungen**: Mindestens 4-6 Absätze pro Hauptkapitel
+   - **Strukturierte Gliederung**: Unterkapitel mit jeweils 2-3 Absätzen
+   - **Konkrete Beispiele**: Praxisnahe Szenarien und Code-Beispiele
+   - **Architektur-Rationale**: Ausführliche Begründung der Designentscheidungen
+
+6) **Diagramm-Generierung**: Nach dem Text erstelle separate `.mmd`-Dateien für relevante Kapitel:
+   - Verwende camelCase-Namenskonventionen
    - Medium Abstraktionslevel
    - Konsistente Farb- und Symbol-Kodierung
+   - **NUR** in `.mmd`-Dateien, NIEMALS in Markdown eingebettet
+   - Referenziere die `.mmd`-Datei im entsprechenden Kapitel mit Link und Erklärung
+   - **WICHTIG**: Verwende nach der Erstellung der `.mmd`-Dateien den `mermaid-expert` Subagent, um die Mermaid-Syntax zu validieren und zu korrigieren
 
-6) **Validierung**: Prüfe auf:
+7) **Validierung**: Prüfe auf:
    - Vollständigkeit aller 12 Kapitel
    - Konsistenz zwischen den Kapiteln
    - Referenz-Integrität zu ADRs und anderen Dokumenten
 
-7) **Template-Anwendung**: Nutze `templates/arc42.md` als Strukturbasis
+8) **Template-Anwendung**: Nutze `templates/arc42.md` als Strukturbasis
 
-8) **Review**: Zeige Struktur der zu erstellenden/aktualisierenden `export/arc42/` Dateien
+9) **Review**: Zeige Struktur der zu erstellenden/aktualisierenden `export/arc42/` Dateien
 
-9) **Schreiben**: Nach Bestätigung Verzeichnisstruktur erstellen/aktualisieren
+10) **Schreiben**: Nach Bestätigung Verzeichnisstruktur erstellen/aktualisieren
 
 ## Formatvorgaben
 ### Verzeichnisstruktur `export/arc42/`
@@ -88,16 +106,52 @@ export/arc42/
 ### INDEX.md Format
 - **Metadata**: System, Version, Agent-ID, Timestamp
 - **Navigation**: Links zu allen 12 arc42-Kapiteln und Diagrammen
-- **Übersicht**: Kurze Beschreibung der arc42-Struktur
+- **System Übersicht**: Umfassende Systembeschreibung (4-5 Absätze)
+- **Architektur-Überblick**: Zentrale Designentscheidungen und Strukturprinzipien
+- **Stakeholder & Zielgruppen**: Zielgruppen der Dokumentation
 - **Validierungsregeln**: Status der Vollständigkeits- und Konsistenz-Checks
 
-### Diagramm-Konventionen
-```mermaid
+### Content-Struktur pro arc42-Kapitel
+Jedes `.md`-Kapitel soll folgende Tiefe haben:
+
+1. **Einführung** (1-2 Absätze): Zweck und Einordnung des Kapitels
+2. **Hauptinhalt** (4-8 Absätze je nach Kapitel):
+   - Detaillierte fachliche und technische Beschreibungen
+   - Konkrete Beispiele und Anwendungsfälle
+   - Begründungen und Trade-off-Analysen
+   - Implementierungsrichtlinien und Best Practices
+3. **Referenzen**: Verknüpfungen zu ADRs und anderen Dokumenten
+
+Füge die Diagramme im Text ein, wenn Du sie erstellt hast. KEINE Diagramme in der INDEX.md!
+
+**Zielgröße**: 3-6 Bildschirmseiten Text pro Hauptkapitel
+
+**WICHTIG**: Mermaid-Diagramme werden NUR in separaten `.mmd`-Dateien gespeichert!
+
+### Diagramm-Referenzierung
+Anstatt Mermaid-Code direkt einzubetten, verweise auf externe `.mmd`-Dateien:
+
+```markdown
+## Kontextdiagramm
+
+Siehe: [Kontextabgrenzung](03-kontextabgrenzung.mmd)
+
+*Das Diagramm verdeutlicht die Systemgrenzen und zeigt alle relevanten externen Schnittstellen und Akteure.*
+```
+
+**Dateistruktur**:
+- `03-kontextabgrenzung.md` → enthält nur Text und Diagramm-Verweis
+- `03-kontextabgrenzung.mmd` → enthält nur Mermaid-Code
+
+**Konventionen für `.mmd`-Dateien**:
+```
 graph TD
     user[User] --> system[System Name]
     system --> database[(Database)]
     system --> external[External API]
 ```
+
+**Wichtig**: Text hat Priorität - Diagramme ergänzen, ersetzen nicht!
 
 ## Backup-Struktur
 Bei `--restart`:

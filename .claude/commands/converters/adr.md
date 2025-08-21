@@ -59,7 +59,7 @@ Erzeuge ADRs mindestens für:
 
 ## Dateiformate
 ### ADR-Template
-liegt in `templates/adr.md`
+liegt in `templates/adr.md`, befülle das Template aber UNBEDINGT AUSFÜHRLICH und NACHVOLLZIEHBAR.
 
 ### INDEX.md (automatisch erzeugt/aktualisiert)
 

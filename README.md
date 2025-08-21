@@ -20,9 +20,9 @@ Die Phasen bauen aufeinander auf. Artefakte werden jeweils als Markdown-Dateien 
 - **`principles`** → leitet von `default-principles.md` projektindividuelle `project-principles.md` ab
 
 ### Phase 2: Ziele & Kontext erfassen  
-- **`context/01_context`** → klärt Stakeholder, Business Goals, Qualitätsziele, Constraints
-- **`context/02_domain`** → ermittelt (artefaktbasiert + Interview) Bounded Contexts, Scope, fachliche Regeln
-- **`context/03_workload`** → klassifiziert Systemlast (K/M/G/T-Skalen, Events, Daten, Frequenzen)
+- **`domain/01_context`** → klärt Stakeholder, Business Goals, Qualitätsziele, Constraints
+- **`domain/02_domain`** → ermittelt (artefaktbasiert + Interview) Bounded Contexts, Scope, fachliche Regeln
+- **`domain/03_workload`** → klassifiziert Systemlast (K/M/G/T-Skalen, Events, Daten, Frequenzen)
 
 ### Phase 3: Architektur entwickeln
 - **`design/01_options`** → erarbeitet 2–3 Architektur-Optionen mit Trade-offs und relativem Aufwand
@@ -34,9 +34,9 @@ Die Phasen bauen aufeinander auf. Artefakte werden jeweils als Markdown-Dateien 
 - **`review`** → prüft Artefakte auf Konsistenz, Vollständigkeit, Prinzipien-Konformität
 
 ### Phase 5: Export
-- **`export/adr`** → exportiert ADRs aus bestehenden Design-Dokumenten
-- **`export/arc42`** → generiert vollständige arc42-Dokumentation aus Design-Artefakten  
-- **`export/c4`** → erstellt C4-Diagramme (Context, Container, Components, Deployment)
+- **`converters/adr`** → exportiert ADRs aus bestehenden Design-Dokumenten
+- **`converters/arc42`** → generiert vollständige arc42-Dokumentation aus Design-Artefakten  
+- **`converters/c4`** → erstellt C4-Diagramme (Context, Container, Components, Deployment)
 
 ## Nutzung
 
@@ -49,9 +49,9 @@ Die Phasen bauen aufeinander auf. Artefakte werden jeweils als Markdown-Dateien 
   claude /project principles
   
   # Phase 2: Kontext
-  claude /project context/01_context
-  claude /project context/02_domain
-  claude /project context/03_workload
+  claude /project domain/01_context
+  claude /project domain/02_domain
+  claude /project domain/03_workload
   
   # Phase 3: Architektur
   claude /project design/01_options
@@ -60,13 +60,12 @@ Die Phasen bauen aufeinander auf. Artefakte werden jeweils als Markdown-Dateien 
   claude /project design/04_operability
   
   # Phase 4: Qualitätssicherung
-  claude /project adr
   claude /project review
   
   # Phase 5: Export (optional)
-  claude /project export/adr
-  claude /project export/arc42
-  claude /project export/c4
+  claude /project converters/adr
+  claude /project converters/arc42
+  claude /project converters/c4
   ```
 * Jeder Schritt führt ein Interview, liest bestehende Artefakte und erzeugt/aktualisiert die Ziel-Datei.
 

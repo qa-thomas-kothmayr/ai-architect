@@ -43,7 +43,7 @@ Der Agent führt folgende Checks aus und sammelt Findings (mit **Severity** 🟥
 
 6) **Struktur-Qualität**
 - Schnittstellen-Tabelle vollständig (Richtung/Protokoll/Format/Frequenz)?
-- Sequenzen vorhanden und mit Struktur konsistent? Mermaid-Syntax validierbar?
+- Sequenzen vorhanden und mit Struktur konsistent? Mermaid-Syntax validierbar? (Verwende `mermaid-expert` Subagent zur Validierung)
 
 7) **Operability/NFRs**
 - SLI/SLOs klar (messbar)? Verfügbarkeit/Recovery/Observability/Security hinreichend?
