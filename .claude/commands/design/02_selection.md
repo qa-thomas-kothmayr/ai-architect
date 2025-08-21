@@ -102,3 +102,44 @@ Konsolidiert **Architektur-Optionen** und **Technologieauswahl** zu einer verbin
 ## Folgen & nächste Schritte
 - Spikes/Proofs zur Risikoreduktion: …
 - Migrations-/Einführungsplan (nur grob, relativ): …
+````
+
+### ADR-Template (optional via `--export=adr`)
+
+```md
+# ADR-xxxx: <Entscheidungsthema>
+
+## Status
+Accepted | {Datum}
+
+## Kontext
+Kurzfassung aus Options, Principles & Context.
+
+## Entscheidung
+- Gewählte Option(en) und Techs.
+
+## Begründung
+- Ampel-Resümee je Hauptkriterium (🟢/🟡/🔴), Schlüsselfaktoren.
+
+## Konsequenzen
+- Auswirkungen auf Betrieb, Daten, Teams, Kosten.
+
+## Risiken & Mitigation
+- R1: … / Mitigation: …
+- R2: … / Mitigation: …
+
+## Waiver (falls nötig)
+- Prinzipienkonflikt: … / Gültig bis: … / Owner: …
+```
+
+## Validierung
+
+* **Prinzipien-Treue**: Keine verdeckten Konflikte; Waiver falls nötig.
+* **Nachvollziehbarkeit**: Jede Auswahl hat kurze Begründung.
+* **Vollständigkeit**: Architektur + Tech-Kategorien sind entschieden oder bewusst offen (mit TODO/Spike).
+
+## Exit-Kriterien
+
+* `design/selections.md` existiert mit gewählter Architektur und Tech-Matrix.
+* Verworfene Optionen/Kandidaten sind dokumentiert.
+* (Bei `--export=adr`) ADRs für Kernentscheidungen erstellt.

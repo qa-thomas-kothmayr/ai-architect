@@ -4,40 +4,69 @@ Dieses Repository stellt ein agentisches Vorgehen bereit, um Softwarearchitektur
 
 ## Generelles Vorgehen
 
-Das Vorgehen folgt vier Gruppen von Fragen:
+Das Vorgehen folgt fünf logischen Phasen:
 
 1. **Mit welcher Haltung?** → Principles
 2. **Zu welchen Zielen?** → Context, Domain, Workload
-3. **Wie genau?** → Options, Selections
-4. **Wie gut?** → Review
+3. **Wie genau?** → Options, Selections, Structure, Operability
+4. **Wie gut?** → ADR, Review
+5. **Export** → ADR-Export, arc42, C4
 
 Die Phasen bauen aufeinander auf. Artefakte werden jeweils als Markdown-Dateien im Repo abgelegt und bei Bedarf im Interview-Stil aktualisiert.
 
-## Commands
+## Commands (logische Reihenfolge)
 
-Alle Commands liegen unter `.claude/commands/…` und sind im CLI verfügbar:
+### Phase 1: Haltung klären
+- **`principles`** → leitet von `default-principles.md` projektindividuelle `project-principles.md` ab
 
-* `principles` → leitet von `default-principles.md` projektindividuelle `project-principles.md` ab.
-* `context` → klärt Rahmenbedingungen, Inputs und Zielsetzungen.
-* `domain` → ermittelt (artefaktbasiert + Interview) die fachliche Domäne, Regeln, Policies.
-* `workload` → klassifiziert Systemlast (K/M/G/T, Events, Daten, Frequenzen).
-* `options` → erarbeitet 2–3 Architektur-Optionen mit Trade-offs und Aufwand.
-* `selections` → trifft verbindliche Entscheidungen zu Architektur-Optionen und Technologien, dokumentiert Matrix und Begründung.
-* `review` → prüft ausgewählte Artefakte oder ganze Gruppen auf Konsistenz und Vollständigkeit.
+### Phase 2: Ziele & Kontext erfassen  
+- **`context/01_context`** → klärt Stakeholder, Business Goals, Qualitätsziele, Constraints
+- **`context/02_domain`** → ermittelt (artefaktbasiert + Interview) Bounded Contexts, Scope, fachliche Regeln
+- **`context/03_workload`** → klassifiziert Systemlast (K/M/G/T-Skalen, Events, Daten, Frequenzen)
+
+### Phase 3: Architektur entwickeln
+- **`design/01_options`** → erarbeitet 2–3 Architektur-Optionen mit Trade-offs und relativem Aufwand
+- **`design/02_selections`** → trifft verbindliche Entscheidungen zu Architektur & Technologien (Matrix + Begründung)
+- **`design/03_structure`** → dokumentiert System-/Container-Struktur, Komponenten, Schnittstellen (neutral für C4/arc42)
+- **`design/04_operability`** → erfasst Non-Functional Requirements und Betriebsaspekte
+
+### Phase 4: Qualitätssicherung
+- **`review`** → prüft Artefakte auf Konsistenz, Vollständigkeit, Prinzipien-Konformität
+
+### Phase 5: Export
+- **`export/adr`** → exportiert ADRs aus bestehenden Design-Dokumenten
+- **`export/arc42`** → generiert vollständige arc42-Dokumentation aus Design-Artefakten  
+- **`export/c4`** → erstellt C4-Diagramme (Context, Container, Components, Deployment)
 
 ## Nutzung
 
 ### Erster Durchlauf
 
-* Repository auschecken, CLI aufrufen:
+* Repository auschecken, CLI aufrufen (logische Reihenfolge):
 
   ```sh
+  # Phase 1: Haltung
   claude /project principles
-  claude /project context
-  claude /project domain
-  claude /project workload
-  claude /project options
-  claude /project selections
+  
+  # Phase 2: Kontext
+  claude /project context/01_context
+  claude /project context/02_domain
+  claude /project context/03_workload
+  
+  # Phase 3: Architektur
+  claude /project design/01_options
+  claude /project design/02_selections
+  claude /project design/03_structure
+  claude /project design/04_operability
+  
+  # Phase 4: Qualitätssicherung
+  claude /project adr
+  claude /project review
+  
+  # Phase 5: Export (optional)
+  claude /project export/adr
+  claude /project export/arc42
+  claude /project export/c4
   ```
 * Jeder Schritt führt ein Interview, liest bestehende Artefakte und erzeugt/aktualisiert die Ziel-Datei.
 
@@ -46,7 +75,6 @@ Alle Commands liegen unter `.claude/commands/…` und sind im CLI verfügbar:
 * Standard: **Refine-Modus** → erlaubt gezielte Ergänzungen/Korrekturen.
 * Mit `--restart`: setzt Artefakt neu auf.
 * Mit `--input=<pfad>`: lädt Dokumente/Ordner als zusätzliche Quelle.
-* Mit `--export=adr`: erzeugt ADR-Drafts (Entscheidungsprotokolle).
 
 ### Prinzipien
 

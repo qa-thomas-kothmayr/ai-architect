@@ -1,11 +1,11 @@
 ---
 description: Projekt-Workload erfassen (K/M/G/T/0, J/N Antworten)
-argument-hint: [--export=adr]
+argument-hint: [--input=pfad/zum/ordner-oder-dokument] [--restart]
 allowed-tools: Read, Edit
 ---
 
 ## Zweck
-Erfasst **Mengengerüste, Lastprofile und Wachstum** im Interview-Stil. Antworten sind **K/M/G/T/0** (Größenordnung) oder **J/N** (mit Folgefrage bei J). Ergebnisse landen konsistent in `context/workload.md`; optional wird ein ADR erzeugt.
+Erfasst **Mengengerüste, Lastprofile und Wachstum** im Interview-Stil. Antworten sind **K/M/G/T/0** (Größenordnung) oder **J/N** (mit Folgefrage bei J). Ergebnisse landen konsistent in `context/workload.md`.
 
 ## Skalen & Einheiten
 - **K = ~10³**, **M = ~10⁶**, **G = ~10⁹**, **T = ~10¹²**, **0 = nicht zutreffend**
@@ -16,7 +16,6 @@ Erfasst **Mengengerüste, Lastprofile und Wachstum** im Interview-Stil. Antworte
 
 ## Outputs
 - **Immer:** `context/workload.md` (strukturierter Bericht inkl. Klassifikation & Annahmen)
-- **Optional:** `design/adrs/ADR-????-workload.md` (wenn `--export=adr`), checke die nächsthöhere Nummer
 
 ## Interview-Loop
 Führe die folgenden Blöcke **sequenziell** aus. **Bleibe im Frage-Antwort-Zyklus**, bis alle relevanten Aspekte beantwortet sind oder der Nutzer explizit abbricht.

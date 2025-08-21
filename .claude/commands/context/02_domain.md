@@ -76,3 +76,16 @@ Der Agent darf **on the fly Zusatzfragen** stellen, wenn Unklarheiten auftauchen
 ## Annahmen, Quellen & Confidence
 - Quelle A … (Confidence: hoch/mittel/niedrig)
 - …
+```
+
+## Validierung & Writes
+
+1. **Validieren**: Konsistenz und Ownership prüfen
+2. **Diff anzeigen** (Candidates → Domain final, Diagramme)
+3. **Nur nach Bestätigung schreiben**
+
+## Exit-Kriterien
+
+* `context/domain.md` existiert mit finaler Context-Liste & Scope
+* `context/diagrams/context-map.md` erzeugt und konsistent
+* Quellen & Confidence dokumentiert

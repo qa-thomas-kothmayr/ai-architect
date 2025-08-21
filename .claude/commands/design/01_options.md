@@ -86,3 +86,41 @@ Erarbeitet **2–3 tragfähige Architekturoptionen** auf Basis von **Principles*
 - Option A: [R1, R2, R3] → Spike-Vorschläge: …
 - Option B: …
 - Option C: …
+````
+
+### ADR-Template (nur bei `--export=adr`)
+
+```md
+# ADR-xxxx: Option <Titel>
+
+## Status
+Proposed | {Datum}
+
+## Kontext
+Kurzfassung der Ziele/Constraints/Workload/Prinzipien.
+
+## Entscheidung (Option)
+Beschreibung der Option, Kernbausteine, Integrationsmuster.
+
+## Begründung
+Stärken/Schwächen, Bewertung (🟢/🟡/🔴), harte Trade-offs, Entwicklungsaufwand (relativ).
+
+## Konsequenzen
+Implikationen für Teams, Betrieb, Daten; Folgekosten.
+
+## Nächste Schritte
+Erforderliche Spikes/Proofs, Messkriterien.
+```
+
+## Validierung
+
+* **Konsistenz**: Optionen widersprechen den Prinzipien nicht ohne Waiver.
+* **Vollständigkeit**: Mindestens 2 Optionen; jede mit Annahmen, Risiken, Trade-offs und relativem Entwicklungsaufwand.
+* **Transparenz**: Bewertungen sind nachvollziehbar.
+
+## Exit-Kriterien
+
+* `design/options.md` enthält ≥ 2 Optionen mit Vergleich/Trade-offs.
+* Relativer Entwicklungsaufwand je Option dokumentiert.
+* Offene Risiken mit vorgeschlagenen Spikes dokumentiert.
+* (Bei `--export=adr`) ADR-Drafts je Option erzeugt.

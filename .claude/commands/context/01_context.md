@@ -80,3 +80,16 @@ Beispielstruktur:
 
 ## Annahmen & Quellen
 - …
+```
+
+## Validierung & Writes
+
+1. **Validieren**: Vollständigkeit und Konsistenz prüfen.
+2. **Diff anzeigen** für geplante Änderungen.
+3. **Nur nach Bestätigung schreiben** (`context/context.md`).
+
+## Exit-Kriterien
+
+* Kontext-Datei existiert und enthält Stakeholder, Business Goals, Quality Goals, Constraints.
+* Prioritäten sind erkennbar (z. B. „höchste Ziele“ markiert).
+* Alle Constraints sind mit Quelle oder Begründung dokumentiert.
