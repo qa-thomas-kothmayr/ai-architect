@@ -37,6 +37,7 @@ Die Phasen bauen aufeinander auf. Artefakte werden jeweils als Markdown-Dateien 
 - **`converters/adr`** → exportiert ADRs aus bestehenden Design-Dokumenten
 - **`converters/arc42`** → generiert vollständige arc42-Dokumentation aus Design-Artefakten  
 - **`converters/c4`** → erstellt C4-Diagramme (Context, Container, Components, Deployment)
+- **Go Converter** → konvertiert Markdown-Artefakte zu HTML/PDF mit eingebetteten Mermaid-Diagrammen
 
 ## Nutzung
 
@@ -66,6 +67,9 @@ Die Phasen bauen aufeinander auf. Artefakte werden jeweils als Markdown-Dateien 
   claude /project converters/adr
   claude /project converters/arc42
   claude /project converters/c4
+  
+  # Zusätzlich: Go-basierter HTML/PDF-Export
+  go run convert_markdown.go -input principles -input context -input design -input review -input export
   ```
 * Jeder Schritt führt ein Interview, liest bestehende Artefakte und erzeugt/aktualisiert die Ziel-Datei.
 
@@ -80,6 +84,39 @@ Die Phasen bauen aufeinander auf. Artefakte werden jeweils als Markdown-Dateien 
 * Der Mensch bleibt im Driver Seat. Agenten stellen Fragen, schlagen vor, erzeugen Artefakte. Committen/Schreiben passiert erst nach Bestätigung.
 * Aufwandsschätzungen nur **relativ**, nie absolut in Wochen/Monaten.
 * Konsistenz mit Principles wird geprüft; Abweichungen erfordern Waiver.
+
+## Go-basierter Export
+
+Das Repository enthält einen in Go geschriebenen Konverter (`convert_markdown.go`), der alle Markdown-Artefakte zu HTML und PDF konvertiert.
+
+### Funktionen
+- **Markdown zu HTML**: Konvertiert alle `.md`-Dateien zu strukturierten HTML-Seiten
+- **Mermaid-Integration**: Rendert `.mmd`-Diagramme automatisch als SVG und bettet sie in HTML ein
+- **PDF-Export**: Generiert PDFs aus den HTML-Dateien (benötigt `pandoc` oder `wkhtmltopdf`)
+- **Navigation**: Erstellt automatisch eine Index-Seite mit Verzeichnisstruktur
+- **Styling**: Verwendet responsive CSS für professionelle Darstellung
+
+### Verwendung
+```bash
+# Basis-Konvertierung (nur HTML)
+go run convert_markdown.go
+
+# Mehrere Eingabe-Verzeichnisse
+go run convert_markdown.go -input principles -input context -input design -input export
+
+# Mit PDF-Export
+go run convert_markdown.go -format html -format pdf
+
+# Andere Ausgabe-Verzeichnis
+go run convert_markdown.go -output exports/
+```
+
+### Voraussetzungen
+- **Go**: Zum Ausführen des Konverters
+- **Mermaid CLI** (`mmdc`): Für Diagramm-Rendering
+- **Pandoc** oder **wkhtmltopdf**: Für PDF-Export (optional)
+
+Die generierten HTML-Dateien finden sich im `converted/html/`-Verzeichnis, PDFs im `converted/pdf/`-Verzeichnis.
 
 ## Ergebnis
 
