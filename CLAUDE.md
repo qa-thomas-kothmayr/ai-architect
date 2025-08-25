@@ -82,9 +82,30 @@ Die Commands folgen 5 logischen Phasen, die aufeinander aufbauen:
   - Team-Zuordnungen in CODEOWNERS → Ownership-Grenzen
   - Deployment-Units → Runtime-Boundaries
 
+## Verfügbare Tools & Commands
+### Nix Development Environment
+Das Projekt nutzt Nix für eine reproduzierbare Entwicklungsumgebung. Nach `nix develop` stehen folgende Tools zur Verfügung:
+
+- **Python 3** mit Packages:
+  - `markdown` → Markdown-Processing
+  - `weasyprint` → PDF-Generierung
+- **Node.js & Mermaid CLI**:
+  - `mmdc` → Mermaid-Diagramm-Rendering
+  - `nodejs` → JavaScript-Runtime
+- **Text Processing & Data Tools**:
+  - `pdfgrep` → PDF-Volltext-Suche
+  - `jq` → JSON-Processing
+  - `yq` → YAML/JSON-Processing  
+  - `mlr` (Miller) → CSV/TSV/JSON-Transformation
+
+### Converter Scripts
+- **`./convert_markdown.py`** → Haupt-Converter (Python)
+- **`nix run .`** → Führt `convert_architecture.py` aus
+
 ## Mermaid-Validierung
 ### Validierungs-Workflow
 - **Command:** `validate-mermaid` nutzt den mermaid-expert Subagent
+- **Tool:** `mmdc` (Mermaid CLI) ist verfügbar
 - **Scope:** Alle `*.mmd` Dateien im Projekt
 - **Zeitpunkt:** Nach Diagramm-Erstellung, vor Export-Phase
 

@@ -19,17 +19,28 @@
       in {
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
-            pythonEnv
             nodejs
             nodePackages."@mermaid-js/mermaid-cli"
+            pandoc
+            go
+            
+            # Text processing and search tools
+            pdfgrep
+            jq
+            yq-go
+            miller
           ];
           
           shellHook = ''
             echo "🚀 Architecture documentation converter environment loaded!"
             echo "Available commands:"
-            echo "  ./convert_markdown.py    - Run the converter"
-            echo "  python3 -m pip list      - Check Python packages"
+            echo "  go run ./convert_markdown.go    - Run the Go converter (build with: go build)"
+            echo "  go version               - Check Go version"
             echo "  mmdc --version           - Check Mermaid CLI"
+            echo "  pdfgrep --version        - Check PDF search"
+            echo "  jq --version             - Check JSON processor"
+            echo "  yq --version             - Check YAML processor"
+            echo "  mlr --version            - Check Miller data processor"
             echo ""
           '';
         };
