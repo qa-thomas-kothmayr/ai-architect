@@ -36,7 +36,7 @@ Die Commands folgen 5 logischen Phasen, die aufeinander aufbauen:
 
 ### Phase 3: Architektur entwickeln
 - **`design/01_options`** → 2 konservative + 1-3 kreative Optionen
-- **`design/02_selections`** → Verbindliche Entscheidungen
+- **`design/02_selections`** → Verbindliche Entscheidungen mit Feasibility-Assessment
 - **`design/03_structure`** → System-/Container-Struktur
 - **`design/04_operability`** → NFRs und Betrieb
 
@@ -106,10 +106,28 @@ Die Commands folgen 5 logischen Phasen, die aufeinander aufbauen:
 - **Fehler:** Datei, Zeile, Fehlerbeschreibung
 - **Warnung:** Komplexitäts-Hinweise, Style-Vorschläge
 
+## Architektur-Feasibility-Assessment (design/02_selections)
+### Bewertungskategorien
+- 🟢 **Obviously Feasible:** Klare Architektur-Vision, eindeutige Modul-Zuordnung, schrittweise Migration möglich
+- 🟡 **Theoretically Possible, Practically Risky:** Unklare Service-Boundaries, neue Komplexitäts-Dimensionen, Team muss neue Patterns lernen
+- 🔴 **Obviously Impossible:** Zirkuläre Abhängigkeiten, kein klarer Endzustand, Wildwuchs vorprogrammiert
+
+### Assessment-Dimensionen
+1. **Strukturelle Feasibility:** Klare Schnitte möglich? Migration-Pfad existiert? Zielzustand definierbar?
+2. **Organisatorische Feasibility:** Team-Topologie passt? Entscheidungs-Klarheit bei Features? Cognitive Load tragbar?
+3. **Evolutionäre Feasibility:** Reversibilität? Inkrementelle Änderungen? Lokale Optimierung möglich?
+
+### Entscheidungs-Heuristik
+1. Eliminiere alle 🔴 "Obviously Impossible" Optionen
+2. Bevorzuge 🟢 "Obviously Feasible" über 🟡 "Risky"
+3. Bei mehreren 🟢: Wähle die mit geringster Komplexität
+4. Nur wenn keine 🟢: Detaillierte Spike-Analyse für 🟡
+
 ## Konsistenz-Checks (vor Write)
 - **Context-Fit:** Ziele/Constraints spiegeln.
 - **Workload-Fit:** K/M/G/T, RPH/Tag ↔ Struktur/Operability.
 - **Options↔Selections:** Trade-offs/Abwägungen konsistent.
+- **Feasibility-Assessment:** Alle Optionen kategorisiert (🟢/🟡/🔴).
 - **Mermaid-Lint:** Diagramme syntaktisch geprüft (falls erzeugt).
 
 ## Reviews

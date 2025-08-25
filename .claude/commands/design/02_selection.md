@@ -29,24 +29,51 @@ Konsolidiert **Architektur-Optionen** und **Technologieauswahl** zu einer verbin
    - Optionen aus `design/options.md` einlesen.
    - **Prinzipien-Check**: markiere Konflikte (⚠️) und verlange Waiver, falls Entscheidung dagegen läuft.
 
-2) **Optionsauswahl (Interview)**
-   - Frage: "Gibt es eine klare Favoriten-Option oder eine Kombination?" → Nutzerantwort übernehmen.
-   - Falls unklar: Kurzdarstellung der Optionen mit Ampelbewertung aus `design/options.md` und gezielten Rückfragen.
-   - Ergebnis: **gewählte Option(en)** + kurze Begründung; **verworfen**: Gründe knapp notieren.
+2) **Architektur-Feasibility-Assessment (Interview-Loop)**
+   Für jede Option systematisch durchgehen und mit dem Nutzer bewerten:
+   
+   **Strukturelle Feasibility:**
+   - "Sind bei Option X klare Service-Boundaries möglich oder entstehen unklare Schnitte?"
+   - "Gibt es einen schrittweisen Migrations-Pfad oder nur Big Bang?"
+   - "Ist der Zielzustand klar definiert oder bleibt er vage?"
+   
+   **Organisatorische Feasibility:**
+   - "Kann das Team diese Architektur langfristig ownen und weiterentwickeln?"
+   - "Ist bei jeder neuen Feature-Anfrage klar, wo sie implementiert wird?"
+   - "Bleibt die kognitive Komplexität beherrschbar?"
+   
+   **Evolutionäre Feasibility:**
+   - "Können Entscheidungen rückgängig gemacht werden?"
+   - "Kann das System schrittweise evolvieren?"
+   - "Sind lokale Optimierungen möglich ohne Gesamtsystem-Refactoring?"
+   
+   **Kategorisierung:**
+   - 🟢 **Obviously Feasible:** Klare Vision, eindeutige Zuordnungen, schrittweise machbar
+   - 🟡 **Theoretically Possible, Practically Risky:** Unklare Grenzen, neue Komplexität
+   - 🔴 **Obviously Impossible:** Zirkuläre Dependencies, Wildwuchs vorprogrammiert
 
-3) **Technologieauswahl (Matrix)**
+3) **Optionsauswahl (basierend auf Assessment)**
+   - **Entscheidungs-Heuristik:**
+     1. Eliminiere alle 🔴 "Obviously Impossible" Optionen
+     2. Bevorzuge 🟢 "Obviously Feasible" über 🟡 "Risky"
+     3. Bei mehreren 🟢: Wähle die mit geringster Komplexität
+     4. Nur wenn keine 🟢: Detaillierte Spike-Analyse für 🟡
+   - Frage: "Basierend auf dem Assessment, welche Option bevorzugen Sie?"
+   - Ergebnis: **gewählte Option(en)** + Feasibility-Begründung; **verworfen**: Feasibility-Kategorie als Grund.
+
+4) **Technologieauswahl (Matrix)**
    - Kategorien vorschlagen die zu den Optionen und dem Kontext passen. Beispiele, die aber nicht immer abgefragt werden müssen: **Runtime/Framework**, **Datenhaltung**, **Messaging/Integration**, **API/Edge**, **Infra/Orchestration**, **Observability**, **Security**, **CI/CD**.
    - Für jede Kategorie **2–4 Kandidaten** gegenüberstellen.
    - Bewertung je Kriterium mit Ampel (🟢 gut/hoch, 🟡 mittel, 🔴 schlecht/niedrig). **Keine Zahlen-/Gewichtsspielchen.**
    - Kriterien (erweiterbar): **Zielerreichung**, **Evolvierbarkeit**, **Time-to-Market**, **Operabilität**, **Security/Privacy-Fit**, **Kosten (TCO grob)**, **Entwicklungsaufwand (relativ)**, **Team-Fit**, **Lock-in**.
    - Der Agent darf **on the fly** Zusatzfragen stellen (z. B. Team-Erfahrung, Compliance-Forderungen, Hosting-Vorgaben).
 
-4) **Konsolidierung & Entscheidung**
+5) **Konsolidierung & Entscheidung**
    - **Entscheidungspaket** erzeugen: gewählte Option(en) + je Kategorie der gewählte Technologie-Kandidat.
    - **Begründung** pro Wahl (1–3 Sätze) + **Risiken & Mitigation** (Stichpunkte).
    - **Waiver** erzeugen, wenn Prinzipienkonflikt bewusst akzeptiert wird (mit Ablaufdatum/Owner).
 
-5) **Diff zeigen → Schreiben**
+6) **Diff zeigen → Schreiben**
    - Änderungen an `design/selections.md` nur nach Bestätigung schreiben. Bei `--export=adr`: ADRs generieren.
 
 ## Formatvorgaben
@@ -56,11 +83,23 @@ Konsolidiert **Architektur-Optionen** und **Technologieauswahl** zu einer verbin
 
 ## Summary
 - Gewählte Option(en): …
+- Feasibility-Kategorie: 🟢/🟡/🔴
 - Kerngründe: …
 - Haupt-Risiken & Mitigations: …
 
+## Feasibility Assessment
+
+### Option A: [Name]
+- **Strukturelle Feasibility:** [Bewertung mit Begründung]
+- **Organisatorische Feasibility:** [Bewertung mit Begründung]
+- **Evolutionäre Feasibility:** [Bewertung mit Begründung]
+- **Gesamtbewertung:** 🟢/🟡/🔴
+
+### Option B: [Name]
+[gleiche Struktur]
+
 ## Selected Architecture
-- Option(en): … (Kurzbegründung)
+- Option(en): … (basierend auf Feasibility-Assessment)
 - Abhängigkeiten/Impakts: …
 
 ## Technology Matrix (Ampelbewertung)
@@ -134,12 +173,14 @@ Kurzfassung aus Options, Principles & Context.
 
 ## Validierung
 
+* **Feasibility-Assessment**: Alle Optionen kategorisiert (🟢/🟡/🔴) mit Begründung.
 * **Prinzipien-Treue**: Keine verdeckten Konflikte; Waiver falls nötig.
-* **Nachvollziehbarkeit**: Jede Auswahl hat kurze Begründung.
+* **Nachvollziehbarkeit**: Jede Auswahl hat kurze Begründung basierend auf Feasibility.
 * **Vollständigkeit**: Architektur + Tech-Kategorien sind entschieden oder bewusst offen (mit TODO/Spike).
 
 ## Exit-Kriterien
 
-* `design/selections.md` existiert mit gewählter Architektur und Tech-Matrix.
-* Verworfene Optionen/Kandidaten sind dokumentiert.
+* `design/selections.md` existiert mit Feasibility-Assessment für alle Optionen.
+* Gewählte Architektur basiert auf Feasibility-Kategorisierung (🟢 > 🟡 > 🔴).
+* Verworfene Optionen/Kandidaten sind mit Feasibility-Grund dokumentiert.
 * (Bei `--export=adr`) ADRs für Kernentscheidungen erstellt.
