@@ -5,7 +5,7 @@ allowed-tools: Read, Edit
 ---
 
 ## Zweck
-Erarbeitet **2–3 tragfähige Architekturoptionen** auf Basis von **Principles** und **Context** (immer gelesen), ergänzt um Domain und Workload. Macht **Trade-offs**, **Annahmen** und den erwarteten **Entwicklungsaufwand** (nur relativ, keine absoluten Zeitangaben) explizit, bevor Entscheidungen getroffen werden.
+Erarbeitet **2–5 tragfähige Architekturoptionen** auf Basis von **Principles** und **Context** (immer gelesen), ergänzt um Domain und Workload. Generiert **2 konservative** und **1–3 kreative/unkonventionelle** Lösungsansätze. Macht **Trade-offs**, **Annahmen** und den erwarteten **Entwicklungsaufwand** (nur relativ, keine absoluten Zeitangaben) explizit, bevor Entscheidungen getroffen werden.
 
 ## Eingaben (read-only)
 - `principles/project-principles.md` (immer gelesen)
@@ -25,10 +25,13 @@ Erarbeitet **2–3 tragfähige Architekturoptionen** auf Basis von **Principles*
 1) **Lesen & Ableiten**
    - Extrahiere **Ziele/Constraints** aus Context + Principles.
    - Übernimm **Workload-Klassen (K/M/G/T/0)** und kritische SLOs.
-2) **Optionen vorschlagen (2–3)**
+2) **Optionen vorschlagen (2–5)**
    - Vor automatischen Vorschlägen → Nutzer nach eigenen Ideen fragen.
-   - Jede Option = **Architekturstil + Kernbausteine** (z. B. "modulare Monolith→Service-Extraction", "Microservices + Eventing", "CQRS/Event Sourcing" …)
+   - **2 konservative Optionen**: Bewährte, risikoarme Ansätze (z. B. "modulare Monolith", "klassische 3-Tier", "etablierte Microservices-Patterns")
+   - **1–3 kreative/unkonventionelle Optionen**: Innovative, experimentelle oder "out-of-the-box" Ansätze (z. B. "Event Sourcing + CQRS", "Serverless-first", "Actor Model", "Hexagonal + DDD", "Edge Computing", "Blockchain-basiert" je nach Kontext)
+   - Jede Option = **Architekturstil + Kernbausteine** mit expliziter Kennzeichnung als "konservativ" oder "kreativ"
    - Für jede Option automatisch: **Passung** zu Zielen/Workload/Prinzipien, **Annahmen**, **Risiken**, **relativer Entwicklungsaufwand**.
+   - **Nutzer kann im Interview prunen**: Alle Optionen werden vorgestellt, Nutzer kann unerwünschte streichen.
 3) **Interview-Loop (ergänzend)**
    - Der Agent stellt **on the fly** Zusatzfragen, bis Optionen **verständlich und vollständig** sind.
    - Typische Klärungen: Datenkonsistenz (stark/schwach), Synch vs. Async, Transaktionsgrenzen, Team-Fit, relative Aufwandsabschätzung.
@@ -52,7 +55,7 @@ Erarbeitet **2–3 tragfähige Architekturoptionen** auf Basis von **Principles*
 - Prinzipien (Kurz): …
 
 ## Options
-### Option A – <Titel>
+### Option A – <Titel> (konservativ)
 - Stil & Kernidee: …
 - Hauptbausteine: …
 - Annahmen: …
@@ -60,24 +63,30 @@ Erarbeitet **2–3 tragfähige Architekturoptionen** auf Basis von **Principles*
 - Entwicklungsaufwand (relativ): 🟢/🟡/🔴 (kurze Begründung)
 - Passung zu Zielen/Workload/Prinzipien: ✅/⚠️/❌ (kurze Begründung)
 
-### Option B – <Titel>
+### Option B – <Titel> (konservativ)
 …
 
-### Option C – <Titel> (optional)
+### Option C – <Titel> (kreativ)
+…
+
+### Option D – <Titel> (kreativ, optional)
+…
+
+### Option E – <Titel> (kreativ, optional)
 …
 
 ## Trade-offs & Comparison
 
-| Kriterium | Option A | Option B | Option C |
-|---|---|---|---|
-| Evolvierbarkeit | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
-| Time-to-Market | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
-| Operabilität | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
-| Security/Privacy | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
-| Kosten (TCO grob) | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
-| Entwicklungsaufwand (relativ) | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
-| Team-Fit | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
-| Lock-in-Score (niedriger besser) | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+| Kriterium | Option A | Option B | Option C | Option D | Option E |
+|---|---|---|---|---|---|
+| Evolvierbarkeit | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+| Time-to-Market | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+| Operabilität | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+| Security/Privacy | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+| Kosten (TCO grob) | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+| Entwicklungsaufwand (relativ) | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+| Team-Fit | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
+| Lock-in-Score (niedriger besser) | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 | 🟢/🟡/🔴 |
 
 **Harte Trade-offs**
 - …
@@ -115,12 +124,12 @@ Erforderliche Spikes/Proofs, Messkriterien.
 ## Validierung
 
 * **Konsistenz**: Optionen widersprechen den Prinzipien nicht ohne Waiver.
-* **Vollständigkeit**: Mindestens 2 Optionen; jede mit Annahmen, Risiken, Trade-offs und relativem Entwicklungsaufwand.
+* **Vollständigkeit**: Mindestens 2 konservative + 1 kreative Option; jede mit Annahmen, Risiken, Trade-offs und relativem Entwicklungsaufwand.
 * **Transparenz**: Bewertungen sind nachvollziehbar.
 
 ## Exit-Kriterien
 
-* `design/options.md` enthält ≥ 2 Optionen mit Vergleich/Trade-offs.
+* `design/options.md` enthält ≥ 3 Optionen (2 konservativ + ≥1 kreativ) mit Vergleich/Trade-offs.
 * Relativer Entwicklungsaufwand je Option dokumentiert.
 * Offene Risiken mit vorgeschlagenen Spikes dokumentiert.
 * (Bei `--export=adr`) ADR-Drafts je Option erzeugt.

@@ -49,6 +49,18 @@ Führe die folgenden Blöcke **sequenziell** aus. **Bleibe im Frage-Antwort-Zykl
 - Gibt es bestehende **Integrations- oder Betriebs-Constraints** (Hosting, Cloud-Provider, Ops-Vorgaben)? [J/N] → bei J: welche?
 - Falls Input vorhanden: Stimmen die Constraints? Müssen sie geschärft werden?
 
+### 5) Team-Kapazitäten & Tech-Stack-Erfahrung
+- **Entwicklungsverantwortung**: Wer baut das System initial? (Internes Team, externe Dienstleister, gemischt?)
+- **Maintenance & Handover**: Wer wird das System längerfristig betreuen? (Gleiches Team, anderer Dienstleister, Kunde-inhouse?)
+- **Tech-Stack-Erfahrung Team/Kunde**: 
+  - Mit welchen **Programmiersprachen** hat das Team/der Kunde bereits Erfahrung? (z.B. Java, Python, JavaScript, C#, Go...)
+  - Welche **Frameworks** sind bekannt? (z.B. Spring, React, Angular, Django, Express...)
+  - Erfahrung mit **Datenbank-Technologien**? (z.B. PostgreSQL, MongoDB, Redis, Elasticsearch...)
+  - **Cloud & Infrastructure** Kenntnisse? (z.B. AWS/Azure/GCP, Docker, Kubernetes, Terraform...)
+  - **Messaging/Event-Systeme**? (z.B. RabbitMQ, Apache Kafka, AWS SQS...)
+- **Lernbereitschaft**: Ist das Team/der Kunde offen für **neue Technologien** oder soll primär auf **bewährte/bekannte** Stacks gesetzt werden?
+- **Skill-Gaps**: Gibt es kritische **Wissenslücken**, die durch Training oder externe Unterstützung geschlossen werden müssen?
+
 ## Transformation → `context/context.md`
 Nach dem Interview generiere:
 - **Summary** (kurz, stichpunktartig)
@@ -64,6 +76,7 @@ Beispielstruktur:
 - Business Goals: …
 - Quality Goals: …
 - Constraints: …
+- Team & Tech-Stack: …
 
 ## Details
 ### Stakeholder
@@ -76,6 +89,9 @@ Beispielstruktur:
 …
 
 ### Constraints
+…
+
+### Team-Kapazitäten & Tech-Stack-Erfahrung
 …
 
 ## Annahmen & Quellen

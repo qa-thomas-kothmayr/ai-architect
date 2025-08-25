@@ -1,9 +1,9 @@
 .envrc
-principles/project-principles.md
-review
-design
-export
-context
-raw-input
-converted
+/principles/project-principles.md
+/review
+/design
+/export
+/context
+/raw-input
+/converted
 .direnv
