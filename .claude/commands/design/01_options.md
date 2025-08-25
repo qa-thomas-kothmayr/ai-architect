@@ -25,24 +25,40 @@ Erarbeitet **2–5 tragfähige Architekturoptionen** auf Basis von **Principles*
 1) **Lesen & Ableiten**
    - Extrahiere **Ziele/Constraints** aus Context + Principles.
    - Übernimm **Workload-Klassen (K/M/G/T/0)** und kritische SLOs.
-2) **Optionen vorschlagen (2–5)**
-   - Vor automatischen Vorschlägen → Nutzer nach eigenen Ideen fragen.
+
+2) **Interview: Nutzer-Optionen erfragen**
+   - **Eine einzelne Frage**: "Haben Sie bereits Architekturoptionen im Kopf, die wir berücksichtigen sollen?"
+   - Bei Ja: Optionen vom Nutzer sammeln und notieren
+   - Bei Nein: Weiter zu Schritt 3
+
+3) **Optionen generieren (2–5)**
    - **2 konservative Optionen**: Bewährte, risikoarme Ansätze (z. B. "modulare Monolith", "klassische 3-Tier", "etablierte Microservices-Patterns")
    - **1–3 kreative/unkonventionelle Optionen**: Innovative, experimentelle oder "out-of-the-box" Ansätze (z. B. "Event Sourcing + CQRS", "Serverless-first", "Actor Model", "Hexagonal + DDD", "Edge Computing", "Blockchain-basiert" je nach Kontext)
    - Jede Option = **Architekturstil + Kernbausteine** mit expliziter Kennzeichnung als "konservativ" oder "kreativ"
-   - Für jede Option automatisch: **Passung** zu Zielen/Workload/Prinzipien, **Annahmen**, **Risiken**, **relativer Entwicklungsaufwand**.
-   - **Nutzer kann im Interview prunen**: Alle Optionen werden vorgestellt, Nutzer kann unerwünschte streichen.
-3) **Interview-Loop (ergänzend)**
-   - Der Agent stellt **on the fly** Zusatzfragen, bis Optionen **verständlich und vollständig** sind.
-   - Typische Klärungen: Datenkonsistenz (stark/schwach), Synch vs. Async, Transaktionsgrenzen, Team-Fit, relative Aufwandsabschätzung.
-4) **Vergleich & Trade-offs**
+   - Für jede Option automatisch: **Passung** zu Zielen/Workload/Prinzipien, **Annahmen**, **Risiken**, **relativer Entwicklungsaufwand**
+
+4) **Interview: Optionen reviewen**
+   - **Eine einzelne Frage**: "Hier sind die Optionen [Liste präsentieren]. Möchten Sie einzelne Optionen streichen oder anpassen?"
+   - Anpassungen entsprechend vornehmen
+
+5) **Interview-Loop für Details (schrittweise)**
+   - **Einzelfragen stellen**, bis alle Optionen **verständlich und vollständig** sind:
+     - "Wie wichtig ist starke Datenkonsistenz für Ihr System?" (Option für Option durchgehen)
+     - "Bevorzugen Sie synchrone oder asynchrone Kommunikation zwischen Services?"
+     - "Wie erfahren ist Ihr Team mit [spezifische Technologie]?"
+     - "Welche Transaktionsgrenzen sind für Sie kritisch?"
+   - **Pro Frage**: Auf Antwort warten, Implikationen für Optionen anpassen, dann nächste Frage
+
+6) **Vergleich & Trade-offs**
    - Erzeuge Tabelle **Kriterien × Option** mit qualitativer Bewertung (🟢 = gut/hoch, 🟡 = mittel, 🔴 = schlecht/niedrig):
-     - Zielerreichung (Top-2 Business/Quality), Evolvierbarkeit, Time-to-Market, Operabilität, Security/Privacy-Fit, Kosten (TCO grob), Entwicklungsaufwand (relativ), Team-Fit, Lock-in-Score.
-   - Liste **harte Trade-offs** (z. B. Konsistenz vs. Verfügbarkeit, Latenz vs. Kosten).
-5) **Risiken & Spikes**
-   - Für jede Option: **Top-3 Risiken** + **Spike-Vorschläge** (Eng umrissene Experimente mit messbaren Beweisen).
-6) **Diff zeigen → Schreiben**
-   - Änderungen nur nach Bestätigung. Bei `--export=adr`: ADR-Drafts je Option.
+     - Zielerreichung (Top-2 Business/Quality), Evolvierbarkeit, Time-to-Market, Operabilität, Security/Privacy-Fit, Kosten (TCO grob), Entwicklungsaufwand (relativ), Team-Fit, Lock-in-Score
+   - Liste **harte Trade-offs** (z. B. Konsistenz vs. Verfügbarkeit, Latenz vs. Kosten)
+
+7) **Risiken & Spikes**
+   - Für jede Option: **Top-3 Risiken** + **Spike-Vorschläge** (Eng umrissene Experimente mit messbaren Beweisen)
+
+8) **Diff zeigen → Schreiben**
+   - Änderungen nur nach Bestätigung. Bei `--export=adr`: ADR-Drafts je Option
 
 ## Formatvorgaben
 ### `design/options.md`

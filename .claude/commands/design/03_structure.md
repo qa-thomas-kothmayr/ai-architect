@@ -28,11 +28,24 @@ Leitet aus den **Selections** eine **einheitlich dokumentierte Struktur** ab: Sy
 ## Vorgehen
 1) **Lesen & Prüfen**
    - Selections/Prinzipien einlesen; Domain/Workload berücksichtigen.
-2) **Interview (on the fly erlaubt)**
-   - **System-/Container**: Welche Container/Services gibt es? (UI, API, Services, DB, Messaging, Externals)
-   - **Komponenten**: Welche Hauptkomponenten pro Container (Ports/Use Cases, Adapter, Services, Module)?
-   - **Schnittstellen**: Richtung, Protokoll, Format, Frequenz; idempotent/Transaktional?
-   - **Sequenzen**: 1–2 Kernabläufe (Happy Path + Fehlerfall, wenn relevant)
+2) **Interview (schrittweise, eine Frage pro Schritt)**
+   
+   **System-/Container-Interview:**
+   - **Erste Frage**: "Welche Hauptcontainer/Services soll das System haben?" (z.B. UI, API, Services, DB, Messaging, Externals)
+   - Antwort abwarten, dann bei Bedarf nachfragen: "Gibt es weitere Container die Sie vergessen haben?"
+   
+   **Komponenten-Interview (pro Container):**
+   - **Pro Container einzeln fragen**: "Welche Hauptkomponenten soll Container X enthalten?" 
+   - Beispiele nennen: Ports/Use Cases, Adapter, Services, Module
+   - Antwort abwarten, dann nächsten Container
+   
+   **Schnittstellen-Interview (pro Schnittstelle):**
+   - **Pro Schnittstelle einzeln**: "Wie kommuniziert Container A mit Container B?"
+   - Detailsfragen einzeln: "Welches Protokoll?", "Welches Format?", "Wie häufig?", "Idempotent oder transaktional?"
+   
+   **Sequenzen-Interview:**
+   - **Erste Frage**: "Welche 1-2 Kernabläufe sollen wir als Sequenz dokumentieren?"
+   - **Pro gewählte Sequenz**: "Beschreiben Sie den Ablauf für [Sequenz X] Schritt für Schritt"
 3) **Artefakte erzeugen** (immer Markdown + Mermaid)
    - `system.mmd`: einfache Knoten/Beziehungen zwischen Containern/Externals
    - `components-<container>.mmd`: optionale Skizzen pro Container

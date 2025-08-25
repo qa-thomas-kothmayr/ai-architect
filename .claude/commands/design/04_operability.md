@@ -24,16 +24,48 @@ Sammelt und dokumentiert **Qualitätsanforderungen** sowie Aspekte der **Betrieb
 ## Vorgehen
 1) **Lesen & Prüfen**
    - Principles, Context, Workload & Selections laden.
-2) **Interview** (Fragen je Kategorie; on-the-fly Zusatzfragen erlaubt):
-   - **Verfügbarkeit** (z. B. 99,5% / 99,9% / 99,99%)
-   - **Latenz/Performance** (Antwortzeiten, Durchsatz, SLAs)
-   - **Skalierbarkeit** (Skalierungsstrategie, K/M/G/T-Klassen)
-   - **Zuverlässigkeit & Resilienz** (Failover, Redundanz, Self-Healing)
-   - **Observability** (Monitoring, Logging, Tracing)
-   - **Security & Privacy** (AuthN/Z, Verschlüsselung, DSGVO, Compliance)
-   - **Operabilität** (Deployment, Konfigurierbarkeit, Backup/Restore, Disaster Recovery)
-   - **Wartbarkeit & Evolvierbarkeit** (Upgrade-Zyklen, Abwärtskompatibilität)
-   - **Kostenrahmen** (grobe Erwartungen, nur relativ)
+2) **Interview (schrittweise, eine Kategorie und Frage pro Schritt):**
+   
+   **Verfügbarkeit:**
+   - "Welche Verfügbarkeit erwarten Sie für das System?" (Beispiele zeigen: 99,5% / 99,9% / 99,99%)
+   - Bei Bedarf Nachfrage: "Sind geplante Wartungsfenster akzeptabel?"
+   
+   **Latenz/Performance:**
+   - "Welche Antwortzeiten erwarten Sie?" (Antwort abwarten)
+   - "Welchen Durchsatz muss das System schaffen?" (Antwort abwarten)  
+   - "Gibt es spezielle SLA-Anforderungen?" (Antwort abwarten)
+   
+   **Skalierbarkeit:**
+   - "Wie soll das System skalieren - horizontal oder vertikal?" (Antwort abwarten)
+   - "In welcher Workload-Klasse bewegen wir uns?" (K/M/G/T-Klassen erklären)
+   
+   **Zuverlässigkeit & Resilienz:**
+   - "Brauchen Sie automatisches Failover?" (Antwort abwarten)
+   - "Ist Redundanz erforderlich?" (Antwort abwarten)
+   - "Soll das System self-healing sein?" (Antwort abwarten)
+   
+   **Observability:**
+   - "Welche Art von Monitoring brauchen Sie?" (Antwort abwarten)
+   - "Sind structured Logs wichtig?" (Antwort abwarten)
+   - "Brauchen Sie distributed Tracing?" (Antwort abwarten)
+   
+   **Security & Privacy:**
+   - "Welche Authentifizierung/Autorisierung ist erforderlich?" (Antwort abwarten)
+   - "Brauchen Sie Verschlüsselung?" (Antwort abwarten)
+   - "Gibt es DSGVO- oder Compliance-Anforderungen?" (Antwort abwarten)
+   
+   **Operabilität:**
+   - "Wie soll das Deployment funktionieren?" (Antwort abwarten)
+   - "Wie wichtig ist einfache Konfigurierbarkeit?" (Antwort abwarten)
+   - "Brauchen Sie Backup/Restore-Strategien?" (Antwort abwarten)
+   - "Ist Disaster Recovery relevant?" (Antwort abwarten)
+   
+   **Wartbarkeit & Evolvierbarkeit:**
+   - "Wie häufig planen Sie Upgrades?" (Antwort abwarten)
+   - "Ist Abwärtskompatibilität wichtig?" (Antwort abwarten)
+   
+   **Kostenrahmen:**
+   - "Haben Sie grobe Kostenvorstellungen?" (nur relative Angaben erwarten: niedrig/mittel/hoch)
 3) **Artefakt erzeugen**
    - Ampelbewertung (🟢/🟡/🔴) oder Ja/Nein, wo sinnvoll.
    - Priorisierung (MUST / SHOULD / NICE-TO-HAVE).

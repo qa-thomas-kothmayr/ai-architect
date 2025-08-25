@@ -29,25 +29,25 @@ Konsolidiert **Architektur-Optionen** und **Technologieauswahl** zu einer verbin
    - Optionen aus `design/options.md` einlesen.
    - **Prinzipien-Check**: markiere Konflikte (⚠️) und verlange Waiver, falls Entscheidung dagegen läuft.
 
-2) **Architektur-Feasibility-Assessment (Interview-Loop)**
-   Für jede Option systematisch durchgehen und mit dem Nutzer bewerten:
+2) **Architektur-Feasibility-Assessment (Interview-Loop, eine Frage pro Schritt)**
+   **Für jede Option einzeln und schrittweise durchgehen:**
    
-   **Strukturelle Feasibility:**
-   - "Sind bei Option X klare Service-Boundaries möglich oder entstehen unklare Schnitte?"
-   - "Gibt es einen schrittweisen Migrations-Pfad oder nur Big Bang?"
-   - "Ist der Zielzustand klar definiert oder bleibt er vage?"
+   **Strukturelle Feasibility-Interview:**
+   - **Erste Frage**: "Bei Option X - sind klare Service-Boundaries möglich oder entstehen unklare Schnitte?" (Antwort abwarten)
+   - **Zweite Frage**: "Gibt es einen schrittweisen Migrations-Pfad oder nur Big Bang?" (Antwort abwarten)
+   - **Dritte Frage**: "Ist der Zielzustand klar definiert oder bleibt er vage?" (Antwort abwarten)
    
-   **Organisatorische Feasibility:**
-   - "Kann das Team diese Architektur langfristig ownen und weiterentwickeln?"
-   - "Ist bei jeder neuen Feature-Anfrage klar, wo sie implementiert wird?"
-   - "Bleibt die kognitive Komplexität beherrschbar?"
+   **Organisatorische Feasibility-Interview:**
+   - **Erste Frage**: "Kann Ihr Team diese Architektur langfristig ownen und weiterentwickeln?" (Antwort abwarten)
+   - **Zweite Frage**: "Wäre bei jeder neuen Feature-Anfrage klar, wo sie implementiert wird?" (Antwort abwarten)
+   - **Dritte Frage**: "Bleibt die kognitive Komplexität für das Team beherrschbar?" (Antwort abwarten)
    
-   **Evolutionäre Feasibility:**
-   - "Können Entscheidungen rückgängig gemacht werden?"
-   - "Kann das System schrittweise evolvieren?"
-   - "Sind lokale Optimierungen möglich ohne Gesamtsystem-Refactoring?"
+   **Evolutionäre Feasibility-Interview:**
+   - **Erste Frage**: "Können Architektur-Entscheidungen später rückgängig gemacht werden?" (Antwort abwarten)
+   - **Zweite Frage**: "Kann das System schrittweise evolvieren?" (Antwort abwarten)
+   - **Dritte Frage**: "Sind lokale Optimierungen möglich ohne Gesamtsystem-Refactoring?" (Antwort abwarten)
    
-   **Kategorisierung:**
+   **Kategorisierung nach Interview:**
    - 🟢 **Obviously Feasible:** Klare Vision, eindeutige Zuordnungen, schrittweise machbar
    - 🟡 **Theoretically Possible, Practically Risky:** Unklare Grenzen, neue Komplexität
    - 🔴 **Obviously Impossible:** Zirkuläre Dependencies, Wildwuchs vorprogrammiert
@@ -58,15 +58,20 @@ Konsolidiert **Architektur-Optionen** und **Technologieauswahl** zu einer verbin
      2. Bevorzuge 🟢 "Obviously Feasible" über 🟡 "Risky"
      3. Bei mehreren 🟢: Wähle die mit geringster Komplexität
      4. Nur wenn keine 🟢: Detaillierte Spike-Analyse für 🟡
-   - Frage: "Basierend auf dem Assessment, welche Option bevorzugen Sie?"
-   - Ergebnis: **gewählte Option(en)** + Feasibility-Begründung; **verworfen**: Feasibility-Kategorie als Grund.
+   - **Eine einzelne Frage**: "Basierend auf dem Feasibility-Assessment, welche Architektur-Option bevorzugen Sie?"
+   - Ergebnis: **gewählte Option(en)** + Feasibility-Begründung; **verworfen**: Feasibility-Kategorie als Grund
 
-4) **Technologieauswahl (Matrix)**
-   - Kategorien vorschlagen die zu den Optionen und dem Kontext passen. Beispiele, die aber nicht immer abgefragt werden müssen: **Runtime/Framework**, **Datenhaltung**, **Messaging/Integration**, **API/Edge**, **Infra/Orchestration**, **Observability**, **Security**, **CI/CD**.
-   - Für jede Kategorie **2–4 Kandidaten** gegenüberstellen.
-   - Bewertung je Kriterium mit Ampel (🟢 gut/hoch, 🟡 mittel, 🔴 schlecht/niedrig). **Keine Zahlen-/Gewichtsspielchen.**
-   - Kriterien (erweiterbar): **Zielerreichung**, **Evolvierbarkeit**, **Time-to-Market**, **Operabilität**, **Security/Privacy-Fit**, **Kosten (TCO grob)**, **Entwicklungsaufwand (relativ)**, **Team-Fit**, **Lock-in**.
-   - Der Agent darf **on the fly** Zusatzfragen stellen (z. B. Team-Erfahrung, Compliance-Forderungen, Hosting-Vorgaben).
+4) **Technologieauswahl-Interview (schrittweise pro Kategorie)**
+   - **Kategorien-Bestimmung**: "Welche Technologie-Kategorien sind für Ihr Projekt relevant?" (Beispiele zeigen: Runtime/Framework, Datenhaltung, Messaging/Integration, API/Edge, Infra/Orchestration, Observability, Security, CI/CD)
+   - **Pro Kategorie einzeln durchgehen:**
+     - **Schritt 1**: "Für Kategorie X - welche 2-4 Kandidaten sollen wir betrachten?" (Antwort abwarten)
+     - **Schritt 2**: "Wie wichtig ist für Sie [Kriterium Y] bei dieser Auswahl?" (pro Kriterium einzeln fragen)
+     - **Schritt 3**: Bewertungsmatrix mit Ampel erstellen (🟢 gut/hoch, 🟡 mittel, 🔴 schlecht/niedrig)
+     - **Schritt 4**: "Basierend auf der Bewertung - welcher Kandidat für Kategorie X?"
+   - **Zusatzfragen einzeln bei Bedarf**: 
+     - "Welche Erfahrung hat Ihr Team mit [Technologie]?"
+     - "Gibt es Compliance-Anforderungen für [Kategorie]?"
+     - "Bestehen Hosting-Vorgaben?"
 
 5) **Konsolidierung & Entscheidung**
    - **Entscheidungspaket** erzeugen: gewählte Option(en) + je Kategorie der gewählte Technologie-Kandidat.
