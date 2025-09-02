@@ -1,20 +1,36 @@
 # arc42 Architektur-Dokumentation
 
-## Metadata
+## Metadata (PFLICHT)
 
 * **System:** `<system_name>`
 * **Version:** `<version>`
-* **Generiert:** `<timestamp>`
-* **Agent:** `<agent_id>`
-* **Status:** `<draft|review|approved>`
+* **Generiert:** `<timestamp>` (ISO 8601: YYYY-MM-DD HH:MM:SS)
+* **Agent-Version:** Claude Code v{version} + arc42
+* **Source-Dokumente:** [design/structure.md](../design/structure.md), [design/selections.md](../design/selections.md), [context/domain.md](../context/domain.md)
+* **Status:** `Entwurf|Review|Genehmigt`
+* **Completeness-Check:** `✅ Vollständig | ⚠️ Unvollständig | 🔄 In Bearbeitung`
 
 ---
 
-## 1. Einführung und Ziele
+## 1. Einführung und Ziele (PFLICHT, min. 200 Wörter)
 
-* **Aufgabenstellung:** `<primary_purpose>`
-* **Qualitätsziele:** `<performance, security, usability, maintainability>`
-* **Stakeholder:** `<role: concerns>`
+**Aufgabenstellung (PFLICHT):** Primärer Zweck und Geschäftsziele des Systems
+*Beispiel-Inhalt:* Das E-Commerce-System ermöglicht Online-Produktverkauf mit integrierter Bestellabwicklung...
+
+**Qualitätsziele (PFLICHT):** 
+- 🟢 Performance: <100ms Antwortzeit
+- 🟢 Security: HTTPS, Verschlüsselung
+- 🟡 Usability: Intuitive Benutzerführung
+- 🟢 Maintainability: Modulare Architektur
+
+**Stakeholder (PFLICHT):** 
+- Endkunden: Einfache Produktsuche und Kaufabwicklung
+- Betrieb: Skalierbare, wartbare Infrastruktur
+- Entwicklungsteam: Erweiterbare Architektur
+
+**Cross-References:**
+→ Siehe auch: [Kontext](03-kontextabgrenzung.md)
+→ Bezug zu: [Domain-Anforderungen](../context/domain.md)
 
 ---
 
@@ -41,19 +57,30 @@
 
 ---
 
-## 5. Bausteinsicht
+## 5. Bausteinsicht (PFLICHT, min. 300 Wörter)
 
-### Ebene 1 - System Overview
-* **Komponenten:** `<component_name: responsibility>`
-* **Schnittstellen:** `<interface_name: protocol>`
+**Diagramm-Referenz:** [Baustein-Diagramm](05-bausteinsicht.mmd)
 
-### Ebene 2 - Container Detail
-* **Container:** `<container_name: technology, purpose>`
-* **Abhängigkeiten:** `<dependency_graph>`
+### Ebene 1 - System Overview (PFLICHT)
+**Hauptkomponenten (min. 3):**
+- Frontend-App: Benutzerinteraktion und Präsentation  
+- API-Gateway: Service-Orchestrierung und Authentifizierung
+- Core-Services: Geschäftslogik-Implementation
+- Datenschicht: Persistierung und Caching
 
-### Ebene 3 - Component Detail
-* **Komponenten:** `<internal_components[]>`
-* **Implementierung:** `<implementation_details>`
+**Schnittstellen:**
+- REST APIs: JSON über HTTPS
+- Event-Bus: Asynchrone Service-Kommunikation
+
+### Ebene 2 - Container Detail (optional)
+**Container-Architektur:**
+- Web-Container: React SPA
+- API-Container: Node.js/Express Services  
+- DB-Container: PostgreSQL Cluster
+
+**Cross-References:**
+→ Details in: [Laufzeitsicht](06-laufzeitsicht.md)
+→ Deployment: [Verteilungssicht](07-verteilungssicht.md)
 
 ---
 
